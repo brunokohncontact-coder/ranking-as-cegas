@@ -50,7 +50,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
 /* ---------- jogo ---------- */
 #game{position:absolute;inset:0}
-.top{position:absolute;top:2.5%;left:4%;right:4%;display:flex;align-items:center;gap:8px}
+.top{position:absolute;top:12.5%;left:4%;right:4%;display:flex;align-items:center;gap:8px}
 .tag{border-radius:999px;padding:6px 12px;font-family:var(--display);font-style:italic;font-size:19px;line-height:1.1;margin-right:auto}
 .tag small{font-family:var(--body);font-style:normal;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block}
 .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#e5484d;margin-right:6px;vertical-align:1px}
@@ -58,7 +58,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .btn.save.ready{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
 .mini{border-radius:999px;padding:6px 10px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
 
-.slots{position:absolute;left:3%;top:13%;width:36%;display:grid;gap:7px;margin:0;padding:0;list-style:none}
+.slots{position:absolute;left:3%;top:20.5%;width:36%;display:grid;gap:7px;margin:0;padding:0;list-style:none}
 .slot{width:100%;display:grid;grid-template-columns:20px 50px minmax(0,1fr);align-items:center;gap:6px;border-radius:10px;padding:5px 6px 5px 4px;text-align:left;min-height:62px}
 .slot .n{font-family:var(--display);font-size:24px;text-align:center;color:var(--accent);font-variant-numeric:tabular-nums}
 .slot .th{width:50px;height:50px;border-radius:4px;object-fit:cover;display:block;background:rgba(0,0,0,.35)}
@@ -68,7 +68,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .slot.landed{animation:land .5s ease-out}
 @keyframes land{from{box-shadow:0 0 0 3px var(--accent) inset}to{box-shadow:none}}
 
-.disc{position:absolute;right:4%;top:13%;width:52%;display:grid;gap:8px}
+.disc{position:absolute;right:4%;top:20.5%;width:50%;display:grid;gap:8px}
 .sleeve{width:100%;aspect-ratio:1;border-radius:6px;overflow:hidden;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.45)}
 .sleeve img{width:100%;height:100%;object-fit:cover;display:block}
 .sleeve.pop img{animation:pop .5s cubic-bezier(.2,.8,.2,1)}
@@ -87,7 +87,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .bottom .fora img{width:34px;height:34px;border-radius:3px;object-fit:cover;filter:grayscale(1);opacity:.75}
 
 /* ---------- textos para ler (perto da câmera, no alto) ---------- */
-#tele{position:absolute;inset:0;width:100%;display:grid;align-content:start;justify-items:center;padding:8% 5% 0;text-align:center}
+#tele{position:absolute;inset:0;width:100%;display:grid;align-content:start;justify-items:center;padding:26% 5% 0;text-align:center}
 #tele .txt{border-radius:16px;padding:16px 18px;font-size:25px;line-height:1.3;font-weight:500;text-wrap:balance}
 #tele .tap{margin-top:10px;font-size:12px;color:var(--muted)}
 .cue{border-radius:10px;padding:10px 12px;font-size:16px;line-height:1.35;font-weight:500;text-align:left;width:100%}
@@ -96,6 +96,11 @@ details.textos summary{cursor:pointer;color:var(--muted)}
 details.textos label{display:grid;gap:4px;margin-top:10px;font-size:12px;color:var(--muted)}
 details.textos textarea{font:inherit;font-size:16px;color:var(--fg);background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:8px;padding:8px;resize:vertical;min-height:64px;-webkit-user-select:text;user-select:text}
 #intro{overflow-y:auto}
+/* area segura do Reels (1080x1920): nada importante acima de 12,5% (grade 3:4 e barra do topo) nem abaixo de ~70% (legenda e botoes) */
+#guia{position:absolute;inset:0;pointer-events:none}
+#guia i{position:absolute;left:0;right:0;border-top:1px dashed rgba(255,255,255,.45)}
+#guia span{position:absolute;right:6px;font-size:10px;color:rgba(255,255,255,.6);transform:translateY(-120%)}
+#intro[hidden] ~ #guia{display:none}
 
 @media (prefers-reduced-motion:reduce){.sleeve.pop img,.slot.landed{animation:none}}
 </style>
@@ -128,6 +133,7 @@ details.textos textarea{font:inherit;font-size:16px;color:var(--fg);background:r
       <button class="btn ghost save" id="saveIntro" hidden></button>
     </div>
   </section>
+  <div id="guia" aria-hidden="true"><i style="top:12.5%"></i><span style="top:12.5%">área segura do Reels</span><i style="top:70%"></i><span style="top:70%">limite da legenda</span></div>
 
   <div id="count" hidden></div>
 
